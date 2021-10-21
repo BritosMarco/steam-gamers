@@ -1,6 +1,7 @@
 import {
   BaseEntity,
   Entity,
+  Unique,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
@@ -8,6 +9,7 @@ import {
 } from 'typeorm';
 
 @Entity()
+/* @Unique(['name']) */
 export class Game extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -15,7 +17,7 @@ export class Game extends BaseEntity {
   @Column({ nullable: false, type: 'varchar', length: 200 })
   name: string;
 
-  @Column({ nullable: false, type: 'varchar', length: 20 })
+  @Column({ nullable: false, type: 'varchar', length: 200 })
   bio: string;
 
   @Column({ nullable: false, type: 'varchar', length: 200 })

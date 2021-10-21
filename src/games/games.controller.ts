@@ -28,18 +28,25 @@ export class GamesController {
   constructor(private gamesService: GamesService) {}
 
   @Post()
-  @Role(UserRole.ADMIN)
+  /*  @Role(UserRole.ADMIN) */
   async createGame(
     @Body(ValidationPipe) createGameDto: CreateGameDto,
+    @GetUser() user: User,
   ): Promise<ReturnGameDto> {
-    const game = await this.gamesService.createGame(createGameDto);
-    return {
-      game,
-      message: 'Jogo cadastrado com sucesso',
-    };
+    if (user.role != UserRole.ADMIN) {
+      throw new ForbiddenException(
+        'Você não tem autorização para cadastrat um jogo',
+      );
+    } else {
+      const game = await this.gamesService.createGame(createGameDto);
+      return {
+        game,
+        message: 'Jogo cadastrado com sucesso',
+      };
+    }
   }
   @Get(':id')
-  @Role(UserRole.ADMIN)
+  /* @Role(UserRole.ADMIN) */
   async findGameById(@Param('id') id): Promise<ReturnGameDto> {
     const game = await this.gamesService.findGameById(id);
     return {
@@ -64,21 +71,26 @@ export class GamesController {
   }
 
   @Delete(':id')
-  @Role(UserRole.ADMIN)
-  async deleteGame(@Param('id') id: string) {
-    await this.gamesService.deleteGame(id);
-    return {
-      message: 'Usuário removido com sucesso',
-    };
+  async deleteGame(@Param('id') id: string, @GetUser() user: User) {
+    if (user.role != UserRole.ADMIN) {
+      throw new ForbiddenException(
+        'Você não tem autorização para apagar um jogo',
+      );
+    } else {
+      await this.gamesService.deleteGame(id);
+      return {
+        message: 'Jogo removido com sucesso',
+      };
+    }
   }
 
   @Get()
-  @Role(UserRole.ADMIN)
+  /*   @Role(UserRole.ADMIN) */
   async findGames(@Query() query: FindGamesQueryDto) {
-    const found = await this.gamesService.findGames(query);
+    const games = await this.gamesService.findGames(query);
 
     return {
-      found,
+      games,
       message: 'Jogos encontrados',
     };
   }

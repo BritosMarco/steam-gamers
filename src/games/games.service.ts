@@ -65,7 +65,7 @@ export class GamesService {
   async findGames(
     queryDto: FindGamesQueryDto,
   ): Promise<{ games: Game[]; total: number }> {
-    const games = await this.gameRepository.FindGames(queryDto);
+    const games = await this.gameRepository.findGames(queryDto);
     return games;
   }
 }

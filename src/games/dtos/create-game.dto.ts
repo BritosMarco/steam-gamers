@@ -14,21 +14,17 @@ export class CreateGameDto {
   imagem: string;
 
   @IsNotEmpty({ message: 'Insira um pequeno resumo do jogo' })
-  @MaxLength(60, {
+  @MaxLength(200, {
     message: 'O resumo deve ter menos de 200 carcateres',
   })
   bio: string;
 
   @IsNotEmpty({ message: 'Informe a data de lançamento' })
-  @MinLength(10, {
+  @MaxLength(10, {
     message: 'A data de lançamento deve ter no mínimo 10 carcateres',
   })
   data_lancamento: string;
 
-  @IsNotEmpty({ message: 'Informe a confirmação de senha' })
-  @MinLength(6, {
-    message: 'A confirmação de senha deve ter no mínimo 6 carcateres',
-  })
   @IsNotEmpty()
   @IsNumber()
   categoria?: number;
