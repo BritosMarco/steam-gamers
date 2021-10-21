@@ -1,0 +1,97 @@
+
+
+nest new nome do projeto
+
+dentro do docker-compose.yml criado no raiz do projeto
+version: '3'
+
+services:
+  pgsql: 'nome do container
+    image: postgres:alpine versão que eu quero trabalhar
+    ports:
+      - '5432:5432'
+    container_name: 'pgsql'
+    restart: always
+    volumes: 
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pgpassword
+
+volumes:
+  pg-data:
+
+
+docker-compose up -d    'comando para subir um yml para o postgres
+docker container ls -a
+npm i @nestjs/typeorm typeorm pg bcrypt class-transformer class-validator
+npm i @types/bcrypt -D
+
+
+
+link uteis 
+
+hub.docker.com containers diversos para consultas
+
+Documentação
+
+https://medium.com/tableless/entendendo-tokens-jwt-json-web-token-413c6d1397f6
+https://docs.nestjs.com/exception-filters
+TYPEORM.IO
+postgresql.org/docs/13/errcodes-appendix.html
+https://github.com/winstonjs/winston
+https://www.npmjs.com/package/nest-winston
+
+
+
+
+
+
+
+
+Autenticaçáo JWT
+para iniciar
+npx nest g module auth
+npx nest g controller auth --no-spec
+npm i --save passport passport-jwt @nestjs/jwt @nestjs/passport
+ConflictException - Verifica conflito no banco ex. se o email que estou tentando cadastrar ja existe
+
+bycrypt pega minha senha e gera um hash
+crypot ele gera um token aleatorio.
+
+
+
+
+arquivos *.yml muito comum no mercado principalmente no WAS arquivos de configuraçáo
+
+Aqui define as configurações  pgsql nome do  container, ter cuidado com a identação.
+
+
+CONEXÃO COM O BANCO
+O TypeOrmModule tem que sempre tem que import  para conectar o nest com  o banco 
+sincronize: true faz o papel de push, migrate do prisma conectar com o banco. no typeormconfig
+no app. module
+import typeormconfig que nós criamos
+e o typeormModule,forRoot é quem liga o typeormconfig com o banco.
+
+
+Repository Salva os dados  no banco.
+
+Para  encontrar erros, console.log no error do cath
+
+Pasport Module é o cara que usamos para proteger os endpoints
+jwtstartewgyu, extração do token e validação do token
+
+
+
+
+
+
+
+
+
+
+
+
+
+
