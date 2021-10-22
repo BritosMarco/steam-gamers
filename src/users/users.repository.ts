@@ -46,16 +46,18 @@ export class UserRepository extends Repository<User> {
     return { users, total };
   }
 
-  async createUser(creatUserDto: CreateUserDto, role: UserRole): Promise<User> {
-    const { email, name, username, imagem, password } = creatUserDto;
+  async createUser(
+    createUserDto: CreateUserDto,
+    role: UserRole,
+  ): Promise<User> {
+    const { email, name, password } = createUserDto;
+
     const user = this.create();
 
     user.email = email;
     user.name = name;
-    user.username = username;
     user.role = role;
     user.status = true;
-    user.imagem = imagem;
     user.confirmationToken = crypto.randomBytes(32).toString('hex');
     user.salt = await bcrypt.genSalt();
     user.password = await this.hashPassword(password, user.salt);
@@ -67,15 +69,25 @@ export class UserRepository extends Repository<User> {
       return user;
     } catch (error) {
       if (error.code.toString() === '23505') {
-        throw new ConflictException('Email Já cadastrado');
+        throw new ConflictException('Endereço de email já está em uso');
       } else {
-        throw new InternalServerErrorException('Erro ao cadastrar usuário');
+        throw new InternalServerErrorException(
+          'Erro ao salvar o usuário no banco de dados',
+        );
       }
     }
   }
 
-  async checkCredentials(credentialsdto: CredentialsDto): Promise<User> {
-    const { email, password } = credentialsdto;
+  async changePassword(id: string, password: string) {
+    const user = await this.findOne(id);
+    user.salt = await bcrypt.genSalt();
+    user.password = await this.hashPassword(password, user.salt);
+    user.recoverToken = null;
+    await user.save();
+  }
+
+  async checkCredentials(credentialsDto: CredentialsDto): Promise<User> {
+    const { email, password } = credentialsDto;
 
     const user = await this.findOne({ email, status: true });
 
