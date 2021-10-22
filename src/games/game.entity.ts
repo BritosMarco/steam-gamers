@@ -1,3 +1,4 @@
+import { User } from 'src/users/user.entity';
 import {
   BaseEntity,
   Entity,
@@ -6,6 +7,7 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity()
@@ -35,6 +37,6 @@ export class Game extends BaseEntity {
   @Column()
   curtidas: number;
 
-  @Column()
-  categoria: number;
+  @ManyToOne(() => User, (user) => user.game)
+  users: User;
 }

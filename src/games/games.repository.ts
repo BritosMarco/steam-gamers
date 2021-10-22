@@ -6,6 +6,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { FindGamesQueryDto } from './dtos/find-games-query.dto';
+import { User } from 'src/users/user.entity';
 
 @EntityRepository(Game)
 export class GameRepository extends Repository<Game> {
@@ -38,13 +39,12 @@ export class GameRepository extends Repository<Game> {
   }
 
   async createGame(createGameDto: CreateGameDto): Promise<Game> {
-    const { name, bio, imagem, data_lancamento, categoria, curtidas } =
+    const { name, bio, imagem, data_lancamento, curtidas } =
       createGameDto;
     const game = this.create();
     game.bio = bio;
     game.name = name;
     game.data_lancamento = data_lancamento;
-    game.categoria = categoria;
     game.curtidas = curtidas;
     game.imagem = imagem;
 
