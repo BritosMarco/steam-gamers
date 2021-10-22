@@ -39,8 +39,7 @@ export class GameRepository extends Repository<Game> {
   }
 
   async createGame(createGameDto: CreateGameDto): Promise<Game> {
-    const { name, bio, imagem, data_lancamento, curtidas } =
-      createGameDto;
+    const { name, bio, imagem, data_lancamento, curtidas } = createGameDto;
     const game = this.create();
     game.bio = bio;
     game.name = name;
