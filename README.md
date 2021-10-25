@@ -2,7 +2,7 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
 
-> API SteamGames criada como `Projeto de Avaliação Final` do curso de Back End Noje.Js Módulo IV https://blueedtech.com.br/, utilizando a linguagem de programação JavaScript (TypeScript) e o banco de dados PostreeSQL. Nessa API eu crio um CRUD completo com Role de usurários ADMIN e USER, com rotas protegidas por Guards, autenticações JWT e log de usuários.
+> API SteamGames criada como `Projeto de Avaliação Final` do curso de Back End Noje.Js Módulo IV https://blueedtech.com.br/, utilizando a linguagem de programação JavaScript (TypeScript) e o banco de dados PostgreeSQL. Nessa API eu crio um CRUD completo com Role de usurários ADMIN e USER, com rotas protegidas por Guards, autenticações JWT e log de usuários.
 
 Para utilizar o projeto faça o dowload do arquivo zipado, ou faça o clone em seu computador utilizando o Git. Execute o comando `npm i` dentro da pasta do projeto em seu computador(a pasta que contém o arquivo package.json), para baixar as dependencias do projeto.
 
