@@ -35,7 +35,7 @@ Você pode utilizar as ferramentas:
 Exemplos de URLs:
 
 - Essa é a URL de teste padrão: http://localhost:3000/games
-- Atenção, é necessário que o usuário esteja logado para conseguir acessar as rotas e aulgas rotas estão disponiveis paenas para Usuários ADMIN.
+- Atenção, é necessário que o usuário esteja logado para conseguir acessar as rotas e algumas rotas estão disponiveis apenas para Usuários ADMIN.
 - Para buscar por ID, Editar ou Apagar, insira o ID na URL: http://localhost:3000/games/613fdaa4c25e7d70de41dd5c
 - Para fazer uma busca com query string, esse é um exemplo de URL: http://localhost:3000/personagens/filter?nome=Luke Skywalker
 
